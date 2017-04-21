@@ -181,6 +181,13 @@ open class CombinedChartView: BarLineChartViewBase, CombinedChartDataProvider
     }
     
     // MARK: - Accessors
+
+    /// if set to true, a rounded rectangle with the corners is drawn on each bar
+    open var drawRoundedBarEnabled: Bool
+        {
+        get { return (renderer as! CombinedChartRenderer).drawRoundedBarEnabled }
+        set { (renderer as! CombinedChartRenderer).drawRoundedBarEnabled = newValue }
+    }
     
     /// if set to true, all values are drawn above their bars, instead of below their top
     open var drawValueAboveBarEnabled: Bool
@@ -216,6 +223,9 @@ open class CombinedChartView: BarLineChartViewBase, CombinedChartDataProvider
             (renderer as! CombinedChartRenderer!).drawOrder = newValue.map { DrawOrder(rawValue: $0)! }
         }
     }
+
+    /// - returns: `true` if drawing rounded bars is enabled, `false` ifnot
+    open var isDrawRoundedBarEnabled: Bool { return drawRoundedBarEnabled }
     
     /// Set this to `true` to make the highlight operation full-bar oriented, `false` to make it highlight single values
     open var highlightFullBarEnabled: Bool = false
