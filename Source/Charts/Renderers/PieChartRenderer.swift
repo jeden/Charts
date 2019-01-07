@@ -431,7 +431,7 @@ open class PieChartRenderer: DataRenderer
                             text: valueText,
                             point: labelPoint,
                             align: align,
-                            attributes: [convertFromNSAttributedStringKey(NSAttributedString.Key.font): valueFont, convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): valueTextColor]
+                            attributes: [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: valueTextColor]
                         )
                         
                         if j < data.entryCount && pe?.label != nil
@@ -442,8 +442,8 @@ open class PieChartRenderer: DataRenderer
                                 point: CGPoint(x: labelPoint.x, y: labelPoint.y + lineHeight),
                                 align: align,
                                 attributes: [
-                                    convertFromNSAttributedStringKey(NSAttributedString.Key.font): entryLabelFont ?? valueFont,
-                                    convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): entryLabelColor ?? valueTextColor]
+                                    NSAttributedString.Key.font: entryLabelFont ?? valueFont,
+                                    NSAttributedString.Key.foregroundColor: entryLabelColor ?? valueTextColor]
                             )
                         }
                     }
@@ -457,8 +457,8 @@ open class PieChartRenderer: DataRenderer
                                 point: CGPoint(x: labelPoint.x, y: labelPoint.y + lineHeight / 2.0),
                                 align: align,
                                 attributes: [
-                                    convertFromNSAttributedStringKey(NSAttributedString.Key.font): entryLabelFont ?? valueFont,
-                                    convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): entryLabelColor ?? valueTextColor]
+                                    NSAttributedString.Key.font: entryLabelFont ?? valueFont,
+                                    NSAttributedString.Key.foregroundColor: entryLabelColor ?? valueTextColor]
                             )
                         }
                     }
@@ -469,7 +469,7 @@ open class PieChartRenderer: DataRenderer
                             text: valueText,
                             point: CGPoint(x: labelPoint.x, y: labelPoint.y + lineHeight / 2.0),
                             align: align,
-                            attributes: [convertFromNSAttributedStringKey(NSAttributedString.Key.font): valueFont, convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): valueTextColor]
+                            attributes: [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: valueTextColor]
                         )
                     }
                 }
@@ -487,7 +487,7 @@ open class PieChartRenderer: DataRenderer
                             text: valueText,
                             point: CGPoint(x: x, y: y),
                             align: .center,
-                            attributes: [convertFromNSAttributedStringKey(NSAttributedString.Key.font): valueFont, convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): valueTextColor]
+                            attributes: [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: valueTextColor]
                         )
                         
                         if j < data.entryCount && pe?.label != nil
@@ -498,8 +498,8 @@ open class PieChartRenderer: DataRenderer
                                 point: CGPoint(x: x, y: y + lineHeight),
                                 align: .center,
                                 attributes: [
-                                    convertFromNSAttributedStringKey(NSAttributedString.Key.font): entryLabelFont ?? valueFont,
-                                    convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): entryLabelColor ?? valueTextColor]
+                                    NSAttributedString.Key.font: entryLabelFont ?? valueFont,
+                                    NSAttributedString.Key.foregroundColor: entryLabelColor ?? valueTextColor]
                             )
                         }
                     }
@@ -513,8 +513,8 @@ open class PieChartRenderer: DataRenderer
                                 point: CGPoint(x: x, y: y + lineHeight / 2.0),
                                 align: .center,
                                 attributes: [
-                                    convertFromNSAttributedStringKey(NSAttributedString.Key.font): entryLabelFont ?? valueFont,
-                                    convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): entryLabelColor ?? valueTextColor]
+                                    NSAttributedString.Key.font: entryLabelFont ?? valueFont,
+                                    NSAttributedString.Key.foregroundColor: entryLabelColor ?? valueTextColor]
                             )
                         }
                     }
@@ -525,7 +525,7 @@ open class PieChartRenderer: DataRenderer
                             text: valueText,
                             point: CGPoint(x: x, y: y + lineHeight / 2.0),
                             align: .center,
-                            attributes: [convertFromNSAttributedStringKey(NSAttributedString.Key.font): valueFont, convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): valueTextColor]
+                            attributes: [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: valueTextColor]
                         )
                     }
                 }
@@ -840,9 +840,4 @@ open class PieChartRenderer: DataRenderer
         
         context.restoreGState()
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
-	return input.rawValue
 }
