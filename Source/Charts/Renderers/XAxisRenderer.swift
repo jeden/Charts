@@ -72,7 +72,7 @@ open class XAxisRenderer: AxisRendererBase
         
         let longest = xAxis.getLongestLabel()
         
-        let labelSize = longest.size(attributes: [NSFontAttributeName: xAxis.labelFont])
+        let labelSize = longest.size(withAttributes: [NSAttributedString.Key.font: xAxis.labelFont])
         
         let labelWidth = labelSize.width
         let labelHeight = labelSize.height
@@ -190,9 +190,9 @@ open class XAxisRenderer: AxisRendererBase
         #endif
         paraStyle.alignment = .center
         
-        let labelAttrs = [NSFontAttributeName: xAxis.labelFont,
-            NSForegroundColorAttributeName: xAxis.labelTextColor,
-            NSParagraphStyleAttributeName: paraStyle] as [String : NSObject]
+        let labelAttrs = [NSAttributedString.Key.font: xAxis.labelFont,
+            NSAttributedString.Key.foregroundColor: xAxis.labelTextColor,
+            NSAttributedString.Key.paragraphStyle: paraStyle] as [NSAttributedString.Key : NSObject]
         let labelRotationAngleRadians = xAxis.labelRotationAngle * ChartUtils.Math.FDEG2RAD
         
         let centeringEnabled = xAxis.isCenterAxisLabelsEnabled
@@ -267,7 +267,7 @@ open class XAxisRenderer: AxisRendererBase
         formattedLabel: String,
         x: CGFloat,
         y: CGFloat,
-        attributes: [String: NSObject],
+        attributes: [NSAttributedString.Key: NSObject],
         constrainedToSize: CGSize,
         anchor: CGPoint,
         angleRadians: CGFloat)
@@ -431,7 +431,7 @@ open class XAxisRenderer: AxisRendererBase
         let label = limitLine.label
         
         // if drawing the limit-value label is enabled
-        if limitLine.drawLabelEnabled && label.characters.count > 0
+        if limitLine.drawLabelEnabled && label.isEmpty == false
         {
             let labelLineHeight = limitLine.valueFont.lineHeight
             
@@ -445,7 +445,7 @@ open class XAxisRenderer: AxisRendererBase
                         x: position.x + xOffset,
                         y: viewPortHandler.contentTop + yOffset),
                     align: .left,
-                    attributes: [NSFontAttributeName: limitLine.valueFont, NSForegroundColorAttributeName: limitLine.valueTextColor])
+                    attributes: [NSAttributedString.Key.font: limitLine.valueFont, NSAttributedString.Key.foregroundColor: limitLine.valueTextColor])
             }
             else if limitLine.labelPosition == .rightBottom
             {
@@ -455,7 +455,7 @@ open class XAxisRenderer: AxisRendererBase
                         x: position.x + xOffset,
                         y: viewPortHandler.contentBottom - labelLineHeight - yOffset),
                     align: .left,
-                    attributes: [NSFontAttributeName: limitLine.valueFont, NSForegroundColorAttributeName: limitLine.valueTextColor])
+                    attributes: [NSAttributedString.Key.font: limitLine.valueFont, NSAttributedString.Key.foregroundColor: limitLine.valueTextColor])
             }
             else if limitLine.labelPosition == .leftTop
             {
@@ -465,7 +465,7 @@ open class XAxisRenderer: AxisRendererBase
                         x: position.x - xOffset,
                         y: viewPortHandler.contentTop + yOffset),
                     align: .right,
-                    attributes: [NSFontAttributeName: limitLine.valueFont, NSForegroundColorAttributeName: limitLine.valueTextColor])
+                    attributes: [NSAttributedString.Key.font: limitLine.valueFont, NSAttributedString.Key.foregroundColor: limitLine.valueTextColor])
             }
             else
             {
@@ -475,7 +475,7 @@ open class XAxisRenderer: AxisRendererBase
                         x: position.x - xOffset,
                         y: viewPortHandler.contentBottom - labelLineHeight - yOffset),
                     align: .right,
-                    attributes: [NSFontAttributeName: limitLine.valueFont, NSForegroundColorAttributeName: limitLine.valueTextColor])
+                    attributes: [NSAttributedString.Key.font: limitLine.valueFont, NSAttributedString.Key.foregroundColor: limitLine.valueTextColor])
             }
         }
     }

@@ -355,7 +355,7 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
         
         let frame = self.bounds
 
-        if _data === nil && noDataText.characters.count > 0
+        if _data === nil && noDataText.isEmpty == false
         {
             context.saveGState()
             defer { context.restoreGState() }
@@ -365,8 +365,8 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
                 text: noDataText,
                 point: CGPoint(x: frame.width / 2.0, y: frame.height / 2.0),
                 attributes:
-                [NSFontAttributeName: noDataFont,
-                 NSForegroundColorAttributeName: noDataTextColor],
+                [NSAttributedString.Key.font: noDataFont,
+                 NSAttributedString.Key.foregroundColor: noDataTextColor],
                 constrainedToSize: self.bounds.size,
                 anchor: CGPoint(x: 0.5, y: 0.5),
                 angleRadians: 0.0)
@@ -389,7 +389,7 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
             let description = chartDescription,
             description.isEnabled,
             let descriptionText = description.text,
-            descriptionText.characters.count > 0
+            descriptionText.isEmpty == false
             else { return }
         
         var position = description.position
@@ -403,10 +403,10 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
                 y: frame.height - _viewPortHandler.offsetBottom - description.yOffset - description.font.lineHeight)
         }
         
-        var attrs = [String : AnyObject]()
+        var attrs = [NSAttributedString.Key : AnyObject]()
         
-        attrs[NSFontAttributeName] = description.font
-        attrs[NSForegroundColorAttributeName] = description.textColor
+        attrs[NSAttributedString.Key.font] = description.font
+        attrs[NSAttributedString.Key.foregroundColor] = description.textColor
 
         ChartUtils.drawText(
             context: context,

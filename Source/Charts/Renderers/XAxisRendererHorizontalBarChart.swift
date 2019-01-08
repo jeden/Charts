@@ -68,7 +68,7 @@ open class XAxisRendererHorizontalBarChart: XAxisRenderer
        
         let longest = xAxis.getLongestLabel() as NSString
         
-        let labelSize = longest.size(attributes: [NSFontAttributeName: xAxis.labelFont])
+        let labelSize = longest.size(withAttributes: [NSAttributedString.Key.font: xAxis.labelFont])
         
         let labelWidth = floor(labelSize.width + xAxis.xOffset * 3.5)
         let labelHeight = labelSize.height
@@ -162,7 +162,7 @@ open class XAxisRendererHorizontalBarChart: XAxisRenderer
                         formattedLabel: label,
                         x: pos,
                         y: position.y,
-                        attributes: [NSFontAttributeName: labelFont, NSForegroundColorAttributeName: labelTextColor],
+                        attributes: [NSAttributedString.Key.font: labelFont, NSAttributedString.Key.foregroundColor: labelTextColor],
                         anchor: anchor,
                         angleRadians: labelRotationAngleRadians)
                 }
@@ -175,7 +175,7 @@ open class XAxisRendererHorizontalBarChart: XAxisRenderer
         formattedLabel: String,
         x: CGFloat,
         y: CGFloat,
-        attributes: [String: NSObject],
+        attributes: [NSAttributedString.Key: NSObject],
         anchor: CGPoint,
         angleRadians: CGFloat)
     {
@@ -322,7 +322,7 @@ open class XAxisRendererHorizontalBarChart: XAxisRenderer
             let label = l.label
             
             // if drawing the limit-value label is enabled
-            if l.drawLabelEnabled && label.characters.count > 0
+            if l.drawLabelEnabled && label.isEmpty == false
             {
                 let labelLineHeight = l.valueFont.lineHeight
                 
@@ -337,7 +337,7 @@ open class XAxisRendererHorizontalBarChart: XAxisRenderer
                             x: viewPortHandler.contentRight - xOffset,
                             y: position.y - yOffset),
                         align: .right,
-                        attributes: [NSFontAttributeName: l.valueFont, NSForegroundColorAttributeName: l.valueTextColor])
+                        attributes: [NSAttributedString.Key.font: l.valueFont, NSAttributedString.Key.foregroundColor: l.valueTextColor])
                 }
                 else if l.labelPosition == .rightBottom
                 {
@@ -347,7 +347,7 @@ open class XAxisRendererHorizontalBarChart: XAxisRenderer
                             x: viewPortHandler.contentRight - xOffset,
                             y: position.y + yOffset - labelLineHeight),
                         align: .right,
-                        attributes: [NSFontAttributeName: l.valueFont, NSForegroundColorAttributeName: l.valueTextColor])
+                        attributes: [NSAttributedString.Key.font: l.valueFont, NSAttributedString.Key.foregroundColor: l.valueTextColor])
                 }
                 else if l.labelPosition == .leftTop
                 {
@@ -357,7 +357,7 @@ open class XAxisRendererHorizontalBarChart: XAxisRenderer
                             x: viewPortHandler.contentLeft + xOffset,
                             y: position.y - yOffset),
                         align: .left,
-                        attributes: [NSFontAttributeName: l.valueFont, NSForegroundColorAttributeName: l.valueTextColor])
+                        attributes: [NSAttributedString.Key.font: l.valueFont, NSAttributedString.Key.foregroundColor: l.valueTextColor])
                 }
                 else
                 {
@@ -367,7 +367,7 @@ open class XAxisRendererHorizontalBarChart: XAxisRenderer
                             x: viewPortHandler.contentLeft + xOffset,
                             y: position.y + yOffset - labelLineHeight),
                         align: .left,
-                        attributes: [NSFontAttributeName: l.valueFont, NSForegroundColorAttributeName: l.valueTextColor])
+                        attributes: [NSAttributedString.Key.font: l.valueFont, NSAttributedString.Key.foregroundColor: l.valueTextColor])
                 }
             }
         }
